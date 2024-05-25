@@ -1,0 +1,46 @@
+#:kivy 2.3.0
+
+UserInterface:
+    orientation: "vertical" #Stacks the horizontal widgets
+    padding: 10 
+    spacing: 10
+    size_hint: 1, None
+    height: self.minimum_height
+
+    BoxLayout: # Date Widgets
+        id: date_layout
+        orientation: 'horizontal'
+        spacing: 10
+        size_hint_y: None
+        height:  40
+
+        Label:
+            id: date_label
+            text: "Date"
+            font: "12sp"
+            size_hint: 0.2, None
+
+        TextInput:
+            id: date_input
+            hint_text: 'Date (YYYY-MM-DD)'
+            size_hint: 0.8, None
+
+    BoxLayout: #Category
+
+        id: category_layout
+        orientation: 'horizontal'
+        spacing: 10
+        size_hint_y: None
+        height: 40 
+        
+        Label:
+            id: category_label
+            text: "Category"
+            font: "12sp"
+            size_hint: 0.2, None
+            height: 40
+        
+        TextInput:
+            id: category_input
+            hint_text: 'Enter Category'
+            size_hint: 0.8, None
