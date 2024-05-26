@@ -10,9 +10,6 @@ class UserInterface(FloatLayout):
     #Initialize a balance attribute with a default value of 0
     balance = NumericProperty(0)
     
-    
-
-
     def __init__(self, **kwargs):
         super(UserInterface, self).__init__(**kwargs)
 
