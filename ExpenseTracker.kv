@@ -1,121 +1,128 @@
 #:kivy 2.3.0
-
-FloatLayout:
-    BoxLayout:
-        orientation: "vertical"
-        size_hint: 1, None
-        height: self.minimum_height
-        padding: 10
-        spacing: 10
-        pos_hint: {'top': 1}
-
-        BoxLayout: #Date Input and Label
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint_y: None
-            height: 40
-
-            Label:
-                text: "Date"
-                font_size: "15sp"
-                size_hint: None, None
-                height: 30
-                width: 100
-
-            TextInput:
-                id: date_input
-                hint_text: 'Date (YYYY-MM-DD)'
-                size_hint: None, None
-                height: 30
-                width: 100
-
-        BoxLayout: #Category Input and Label
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint_y: None
-            height: 40
-
-            Label:
-                text: "Category"
-                font_size: "15sp"
-                size_hint: None, None
-                height: 30
-                width: 100
-
-            TextInput: 
-                id: category_input
-                hint_text: 'Enter Category'
-                size_hint: None, None
-                height: 30
-                width: 100
-
-        BoxLayout: #Amount Input and Label
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint_y: None
-            height: 40
-
-            Label:
-                text: "Amount Spent"
-                font_size: "15sp"
-                size_hint: None, None
-                height: 30
-                width: 100
-
-            TextInput:
-                id: amount_input
-                input_filter: 'float'
-                input_type: 'number'
-                hint_text: 'Enter Category'
-                size_hint: None, None
-                height: 30
-                width: 100
-
-        BoxLayout: #Location Input and Label
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint_y: None
-            height: 40
-
-            Label:
-                text: "Location"
-                font_size: "15sp"
-                size_hint: None, None
-                height: 30
-                width: 100
-
-            TextInput:
-                id: location_input
-                hint_text: 'Enter Location'
-                size_hint: None, None
-                height: 30
-                width: 100
-
+<UserInterface>:
+    FloatLayout:
         BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: None
-            height: 40
-            
+            orientation: "vertical"
+            size_hint: 1, None
+            height: self.minimum_height
+            padding: 10
+            spacing: 10
+            pos_hint: {'top': 1}
 
-            # Spacer to push the button to the center
-            Widget:
-                size_hint_x: None
-                width: 50
-           
-
-            Button:
-                text: "Submit"
-                size_hint: None, None
+            BoxLayout: #Date Input and Label
+                orientation: 'horizontal'
+                spacing: 10
+                size_hint_y: None
                 height: 40
-                width: 120
-                on_press: app.validate_and_print()
-    
 
-            # Spacer to ensure symmetrical layout
-            Widget:
-                size_hint_x: None
-                width: 50
+                Label:
+                    text: "Date"
+                    font_size: "15sp"
+                    size_hint: None, None
+                    height: 30
+                    width: 100
+
+                TextInput:
+                    id: date_input
+                    hint_text: 'YYYY-MM-DD'
+                    size_hint: None, None
+                    height: 30
+                    width: 120
+
+            BoxLayout: #Category Input and Label
+                orientation: 'horizontal'
+                spacing: 10
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Category"
+                    font_size: "15sp"
+                    size_hint: None, None
+                    height: 30
+                    width: 100
+
+                TextInput: 
+                    id: category_input
+                    hint_text: 'Enter Category'
+                    size_hint: None, None
+                    height: 30
+                    width: 120
+
+            BoxLayout: #Amount Input and Label
+                orientation: 'horizontal'
+                spacing: 10
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Amount Spent"
+                    font_size: "15sp"
+                    size_hint: None, None
+                    height: 30
+                    width: 100
+
+                TextInput:
+                    id: amount_input
+                    input_filter: 'float'
+                    input_type: 'number'
+                    hint_text: 'Enter Category'
+                    size_hint: None, None
+                    height: 30
+                    width: 120
+
+            BoxLayout: #Location Input and Label
+                orientation: 'horizontal'
+                spacing: 10
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Location"
+                    font_size: "15sp"
+                    size_hint: None, None
+                    height: 30
+                    width: 100
+
+                TextInput:
+                    id: location_input
+                    hint_text: 'Enter Location'
+                    size_hint: None, None
+                    height: 30
+                    width: 120
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: 40
+                
+
+                # Spacer to push the button to the center
+                Widget:
+                    size_hint_x: None
+                    width: 50
+            
+
+                Button:
+                    text: "Submit"
+                    size_hint: None, None
+                    height: 40
+                    width: 120
+                    on_press: app.validate_and_print()
+
+                Button:
+                    text: "Fetch and Display Data"
+                    size_hint: None, None
+                    height: 40
+                    width: 160
+                    on_press: app.fetch_and_print_data()
+        
+
+                # Spacer to ensure symmetrical layout
+                Widget:
+                    size_hint_x: None
+                    width: 50
+    #Adding to main
 
 
             
-#Added new features
