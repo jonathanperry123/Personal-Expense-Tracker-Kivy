@@ -55,11 +55,18 @@ class Expensetracker(App):
         amount = self.root.ids.amount_input.text
         location = self.root.ids.location_input.text
 
-        if self.validate_date(date):
+        if not date or not category or not amount or not location:
+            self.root.ids.error_label.text = "One or Multiple Fields left empty"
+            return 
+
+        elif self.validate_date(date):
             self.insert_data(date,category,amount,location)
+            self.root.ids.error_label.text = "Transaction Successfully Added"
+            return
             
         else:
-            print("Invalid date format. Please enter date in YYYY-MM-DD")
+            self.root.ids.error_label.text = "Date Not Formatted Correctly"
+            return
 
     def fetch_and_print_data(self):
         cursor = self.connection.cursor()
