@@ -13,12 +13,13 @@ class UserInterface(BoxLayout):
 
 class Expensetracker(App):
     def build(self):
-        self.connection = sqlite3.connect('expenses.db')
+        self.connection = sqlite3.connect('FinanceManager.db')
         self.create_table()
         return UserInterface()
     
     def create_table(self):
         cursor = self.connection.cursor()
+
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS expenses (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,39 +30,8 @@ class Expensetracker(App):
                        
         )
 ''')
-        self.connection.commit()
-
-    def insert_data(self, date_text, category, amount, location):
-        cursor = self.connection.cursor()
-        cursor.execute('''
-            INSERT INTO expenses (date, category, amount, location) VALUES (?,?,?,?)''', (date_text,category,amount, location))
-        self.connection.commit()
-
-    def fetch_and_print_data(self):
-        cursor = self.connection.cursor()
-        cursor.execute('SELECT * FROM expenses')
-        rows = cursor.fetchall()
-        for row in rows:
-            print(row)
-
-    def validate_and_print(self):
-        date = self.root.ids.date_input.text
-        category = self.root.ids.category_input.text
-
-        amount = self.root.ids.amount_input.text
-        location = self.root.ids.location_input.text
-
         
-
-        if self.validate_date(date):
-            self.insert_data(date,category,amount,location)
-            print(f"Date {date}")
-            print(f"Category: {category}")
-            print(f"Amount: {amount}")
-            print(f"Location: {location}")
-        else:
-            print("Invalid date format. Please enter date in YYYY-MM-DD")
-
+        self.connection.commit()
 
     def validate_date(self, date_text):
         for date_format in ('%Y-%m-%d', '%Y/%m/%d'):
@@ -71,6 +41,33 @@ class Expensetracker(App):
             except ValueError:
                 continue
         return False
+    
+    def insert_data(self, date_text, category, amount, location):
+        cursor = self.connection.cursor()
+        cursor.execute('''
+            INSERT INTO expenses (date, category, amount, location) VALUES (?,?,?,?)''', (date_text,category,amount, location))
+        self.connection.commit()
+
+    def validate_and_update(self): #Calls insert_date() and validate_date()
+        #Gathers inputs from 
+        date = self.root.ids.date_input.text
+        category = self.root.ids.category_input.text
+        amount = self.root.ids.amount_input.text
+        location = self.root.ids.location_input.text
+
+        if self.validate_date(date):
+            self.insert_data(date,category,amount,location)
+            
+        else:
+            print("Invalid date format. Please enter date in YYYY-MM-DD")
+
+    def fetch_and_print_data(self):
+        cursor = self.connection.cursor()
+        cursor.execute('SELECT * FROM expenses')
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+
 
                
 
@@ -78,5 +75,5 @@ if __name__ == '__main__':
     Expensetracker().run()
 
 #Updating to main
-
+#Add error message when data is not correctly entered in date.
 #Challenge - When adding the build function, everything dissapeared until I placed everything
